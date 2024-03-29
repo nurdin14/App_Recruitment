@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Dashboards;
+use App\Http\Controllers\EmployeesControllers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+//custuom route
+Route::get('/', [Dashboards::class, 'index'])->name('/');
+Route::get('/employee', [EmployeesControllers::class, 'index'])->name('employee');
