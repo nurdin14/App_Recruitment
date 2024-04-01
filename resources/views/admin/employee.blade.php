@@ -4,7 +4,7 @@
 
 <div class="container mt-2">
     <div class="row">
-        <div class="col-12">
+        <div class="col">
             <div class="card">
                 <div class="card-header">
                     <span class="fw-bold">Filter Data</span>
@@ -15,8 +15,9 @@
                             <label for="" class="label">Divisi</label>
                                 <select name="divisi" class="form-control">
                                     <option>All</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
+                                    @foreach($data['divisi'] as $s)
+                                        <option value="{{ $s->divisi }}">{{ $s->divisi }}</option>
+                                    @endforeach
                                 </select>
                             </label>
                         </div>
@@ -24,8 +25,9 @@
                             <label for="" class="label">Position</label>
                                 <select name="position" class="form-control">
                                     <option>All</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
+                                    @foreach($data['position'] as $p)
+                                        <option value="{{ $p->position }}">{{ $p->position }}</option>
+                                    @endforeach
                                 </select>
                             </label>
                         </div>
@@ -35,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 mt-3">
+        <div class="col mt-3">
             <div class="card">
                 <div class="card-body">
                     @if(Session:: has('success'))
@@ -47,6 +49,7 @@
                     <table id="example" class="table table-hover table-striped custom-table">
                         <thead>
                             <tr>
+                                <th>No.</th>
                                 <th>Name</th>
                                 <th>No.Telpon</th>
                                 <th>Email</th>
@@ -57,8 +60,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($employees as $e)
+                            @foreach($data['employee'] as $no => $e)
                             <tr>
+                                <td>{{$no+1}}</td>
                                 <td>{{$e->name}}</td>
                                 <td>{{$e->telp}}</td>
                                 <td>{{$e->email}}</td>
@@ -72,9 +76,10 @@
                                         </a>
                                       
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                          <li><a class="dropdown-item" href="#">Detail</a></li>
-                                          <li><a class="dropdown-item" href="#">Edit</a></li>
-                                          <li><a class="dropdown-item" href="#">Delete</a></li>
+                                          <li><a class="dropdown-item" href="/fetchEmployee/{{$e->id}}">Edit</a></li>
+                                          <li><a class="dropdown-item" href="/detailEmployee/{{$e->id}}">Detail</a></li>
+                                          <li><a class="dropdown-item" href="/fetchEmployee/{{$e->id}}">Edit</a></li>
+                                          <li><a class="dropdown-item" href="/deleteEmployee/{{$e->id}}">Delete</a></li>
                                         </ul>
                                       </div>
                                 </td>

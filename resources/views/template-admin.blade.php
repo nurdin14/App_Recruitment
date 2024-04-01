@@ -120,12 +120,12 @@
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="#"class="menu-link">
+                                <a href="/position"class="menu-link">
                                     <div data-i18n="Position">Position</div>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="#"class="menu-link">
+                                <a href="/divisi"class="menu-link">
                                     <div data-i18n="Divisi">Divisi</div>
                                 </a>
                             </li>
