@@ -263,6 +263,29 @@
     <script>        
         new DataTable('#example');
     </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchButton = document.getElementById('searchButton');
+
+        searchButton.addEventListener('click', function() {
+            const divisiValue = document.getElementById('divisi').value;
+            const positionValue = document.getElementById('position').value;
+
+            const rows = document.querySelectorAll('#employeeTableBody tr');
+
+            rows.forEach(function(row) {
+                const divisi = row.cells[4].textContent.trim();
+                const position = row.cells[5].textContent.trim();
+
+                if ((divisiValue === '' || divisi === divisiValue) && (positionValue === '' || position === positionValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 </html>

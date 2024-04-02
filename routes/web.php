@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 //custuom route
 Route::get('/', [Dashboards::class, 'index'])->name('/');
 Route::get('/employee', [EmployeesControllers::class, 'index'])->name('employee');
+Route::get('/exportExcel', [EmployeesControllers::class, 'exportExcel'])->name('exportExcel');
 Route::get('/createEmployee', [EmployeesControllers::class, 'createEmployee'])->name('createEmployee');
 Route::post('/stroreEmployee', [EmployeesControllers::class, 'stroreEmployee'])->name('stroreEmployee');
 Route::get('/fetchEmployee/{id}', [EmployeesControllers::class, 'fetchEmployee'])->name('fetchEmployee');

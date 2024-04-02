@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\EmployeeExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\EmployeesModels;
 use App\Models\DivisiModels;
 use App\Models\PositionModels;
@@ -18,6 +20,10 @@ class EmployeesControllers extends Controller
         ];
 
         return view('admin/employee', compact('data'));
+    }
+
+    public function exportExcel() {
+        return Excel::download(new EmployeeExport, 'employee.xlsx');
     }
 
     public function createEmployee() {
