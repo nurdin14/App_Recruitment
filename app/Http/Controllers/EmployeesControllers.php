@@ -27,7 +27,12 @@ class EmployeesControllers extends Controller
     }
 
     public function createEmployee() {
-        return view('admin/v_add');
+        $data = [
+            'Posisi' => PositionModels::all(),
+            'Divisi' => DivisiModels::all(),
+        ];
+
+        return view('admin/v_add', compact('data'));
     }
 
     public function stroreEmployee(Request $request) {
@@ -41,12 +46,26 @@ class EmployeesControllers extends Controller
             'address' =>$request->address,
         ];
 
+        if($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $namaFile = time() . '.' . $foto->getClientOriginalExtension();
+            $lokasi = public_path('storage/img');
+
+            $foto->move($lokasi, $namaFile);
+            $data['foto'] = $namaFile;
+        }
+
         EmployeesModels::create($data);
         return redirect()->route('employee')->with('success', "Data Berhasil Ditambahkan!");
     }
 
     public function fetchEmployee($id) {
-        $data = EmployeesModels::find($id);
+        $data = [
+            'Posisi' => PositionModels::all(),
+            'Divisi' => DivisiModels::all(),
+            'Employee' => EmployeesModels::find($id),
+        ];
+
         return view('admin/v_edit', compact('data'));
     }
     
@@ -61,16 +80,42 @@ class EmployeesControllers extends Controller
             'address' =>$request->address,
         ];
         
+        if($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $namaFile = time() . '.' . $foto->getClientOriginalExtension();
+            $lokasi = public_path('storage/img');
+
+            $foto->move($lokasi, $namaFile);
+            $data['foto'] = $namaFile;
+        }
+        
+        if (!empty($request->foto_old)) {
+            $oldFile = public_path($request->foto_old);
+            if (file_exists($oldFile)) {
+                unlink($oldFile);
+            }
+        }
+
         EmployeesModels::find($id)->update($data);
         return redirect()->route('employee')->with('success', "Data Berhasil Diupdate!");
     }
     
     public function deleteEmployee($id) {
-        EmployeesModels::find($id)->delete();
+        $hapus = EmployeesModels::find($id);
+        if (!empty($hapus->foto)) {
+            $gambarPath = public_path('storage/img/'. $hapus->foto);
+            unlink($gambarPath);
+        }
+
+        $hapus->delete();
         return redirect()->route('employee')->with('success', "Data Berhasil Dihapus!");
     }
     public function detailEmployee($id) {
-        $data = EmployeesModels::find($id);
+        $data = [
+            'Posisi' => PositionModels::all(),
+            'Divisi' => DivisiModels::all(),
+            'Employee' => EmployeesModels::find($id),
+        ];
         return view('admin/v_detail', compact('data'));
     }
 }

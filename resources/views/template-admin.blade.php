@@ -58,9 +58,19 @@
             width: 25rem;
             font-size: 10pt;
         }
+        .card-form-career {
+            width: 50rem;
+            font-size: 10pt;
+        }
         
         .content-wrapper {
             font-size: 10pt;
+        }
+
+        .btn-export {
+            border: 1px solid #4a4e69;
+            border-radius: 5px;
+            color: #31363F;
         }
 
     </style>
@@ -107,7 +117,7 @@
                     </li>
                     <!-- Post Career -->
                     <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link">
+                        <a href="/career" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-add-to-queue"></i>
                             <div data-i18n="Post Career">Post Career</div>
                         </a>
@@ -286,6 +296,14 @@
         });
     });
 </script>
+
+<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('desc');
+    CKEDITOR.replace('preq');
+</script>
+
+
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CareerController;
 use App\Http\Controllers\Dashboards;
 use App\Http\Controllers\DivisiControllers;
 use App\Http\Controllers\EmployeesControllers;
@@ -46,3 +47,12 @@ Route::get('/fetchDivisi/{id}', [DivisiControllers::class, 'fetchDivisi'])->name
 Route::post('/updateDivisi/{id}', [DivisiControllers::class, 'updateDivisi'])->name('updateDivisi');
 Route::get('/detailDivisi/{id}', [DivisiControllers::class, 'detailDivisi'])->name('detailDivisi');
 Route::get('/deleteDivisi/{id}', [DivisiControllers::class, 'deleteDivisi'])->name('deletePosition');
+
+//careers
+Route::get('/career', [CareerController::class, 'index'])->name('career');
+Route::get('/createCareer', [CareerController::class, 'createCareer'])->name('createCareer');
+Route::post('/storeCareer', [CareerController::class, 'storeCareer'])->name('storeCareer');
+Route::get('/fetchCareer/{id}', [CareerController::class, 'fetchCareer'])->name('fetchCareer');
+Route::post('/updateCareer/{id}', [CareerController::class, 'updateCareer'])->name('updateCareer');
+Route::get('/detailCareer/{id}', [CareerController::class, 'detailCareer'])->name('detailCareer');
+Route::get('/deleteCareer/{id}', [CareerController::class, 'deleteCareer'])->name('deleteCareer');

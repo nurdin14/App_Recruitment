@@ -42,7 +42,7 @@
         <div class="col mt-3">
             <div class="card">
                 <div class="card-header">
-                    <a href="/exportExcel" target="_blank" class="btn btn-sm btn-info">Export</a>
+                    <a href="/exportExcel" target="_blank" class="btn btn-sm btn-export">Export</a>
                 </div>
                 <div class="card-body">
                     @if(Session:: has('success'))
@@ -81,7 +81,6 @@
                                         </a>
 
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <li><a class="dropdown-item" href="/fetchEmployee/{{$e->id}}">Edit</a></li>
                                             <li><a class="dropdown-item" href="/detailEmployee/{{$e->id}}">Detail</a></li>
                                             <li><a class="dropdown-item" href="/fetchEmployee/{{$e->id}}">Edit</a></li>
                                             <li><a class="dropdown-item" href="/deleteEmployee/{{$e->id}}">Delete</a></li>

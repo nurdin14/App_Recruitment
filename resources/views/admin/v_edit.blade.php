@@ -11,34 +11,51 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <form action="/updateEmployee/{{ $data->id }}" method="post">
+                        <form action="/updateEmployee/{{ $data['Employee']->id }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="col">
                                 <div class="form-group">
                                     <label for="" class="label">Name</label>
-                                     <input type="text" name="name" class="form-control form-control-sm" value="{{ $data->name }}">       
+                                     <input type="text" name="name" class="form-control form-control-sm" value="{{ $data['Employee']->name }}">       
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="label">Email</label>
-                                     <input type="text" name="email" class="form-control form-control-sm" value="{{ $data->email }}">       
+                                     <input type="text" name="email" class="form-control form-control-sm" value="{{ $data['Employee']->email }}">       
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="label">Phone Number</label>
-                                     <input type="telp" name="telp" class="form-control form-control-sm" value="{{ $data->telp }}">       
+                                     <input type="telp" name="telp" class="form-control form-control-sm" value="{{ $data['Employee']->telp }}">       
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="label">Divisi</label>
-                                     <input type="text" name="divisi" class="form-control form-control-sm" value="{{ $data->divisi }}">       
+                                    <select name="divisi" class="form-control">
+                                        <option value="{{ $data['Employee']->divisi }}">{{ $data['Employee']->divisi }}</option>
+                                        @foreach($data['Divisi'] as $s)
+                                        <option value="{{ $s->divisi }}">{{ $s->divisi }}</option>
+                                        @endforeach
+                                    </select>        
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="label">Position</label>
-                                     <input type="text" name="position" class="form-control form-control-sm" value="{{ $data->position }}">       
+                                    <select name="position" class="form-control">
+                                        <option value="{{ $data['Employee']->position }}">{{ $data['Employee']->position }}</option>
+                                        @foreach($data['Posisi'] as $s)
+                                        <option value="{{ $s->position }}">{{ $s->position }}</option>
+                                        @endforeach
+                                    </select>        
                                     </label>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="label">Address</label>
-                                     <textarea name="address" class="form-control form-control-sm">{{ $data->address }}</textarea>       
+                                     <textarea name="address" class="form-control form-control-sm">{{ $data['Employee']->address }}</textarea>       
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="label">Upload CV</label>
+                                     <input type="hidden" name="foto_old" value="{{$data['Employee']->foto}}">       
+                                     <input type="file" name="foto" class="form-control form-control-sm">
+                                     <img src="{{ asset('storage/img/' . $data['Employee']->foto) }}" alt="" width="250">       
                                     </label>
                                 </div>
                             </div>
